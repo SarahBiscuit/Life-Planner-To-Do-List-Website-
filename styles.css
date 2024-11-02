@@ -31,3 +31,12 @@ h3 {
    background-image: url(Images/istockphoto-496682211-612x612.jpg);
    width: 100%;
 }
+
+#formContainer {
+    width: 80%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
