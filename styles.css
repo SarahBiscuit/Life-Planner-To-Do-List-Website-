@@ -1,5 +1,17 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -17,6 +29,5 @@ h3 {
 
 #headingBox {
    background-image: url(Images/istockphoto-496682211-612x612.jpg);
-   padding: 20rem;
    width: 100%;
 }
