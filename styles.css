@@ -33,10 +33,15 @@ h3 {
 }
 
 #formContainer {
-    width: 50%;
+    width: 50rem;
     background-color: black;
     color: white;
     display: flex;
     justify-content: center;
 }
+
+
+
+/*Write media queries to format to different screen sizes.
+Write media query for dark view.*/
 
