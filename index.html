@@ -20,46 +20,25 @@
         <br />
         <div class="container-fluid" id="formContainer">
           <form>
-            <h4>Add your task here</h4>
-            <div class="form-group"> 
-              <label for="taskTitle">Title of Task</label>
-              <textarea class="w-75"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="descriptionOfTask">Description of Task (200 characters maximum)</label>
-              <textarea class="w-75" maxlength="200"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="deadline">Deadline</label>
-              <input type="date" placeholder="09.08.1971"></input>
-            </div>
-            <div class="form-group">
-              <label for="notes">Notes (200 characters maximum)</label>
-              <textarea class="w-75 maxlength="200"></textarea>
-            </div>
-          </form>
-        </div>
-           
-          </form>
-
-          /*EXAMPLE BOOTSTRAP FORM CODE  <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-          */
-
+          <div class="mb-3">
+            <label for="titleOfTask" class="form-label w-100">Title of Task</label>
+            <input type="text" class="form-control w-100" maxlength="50" id="title" aria-describedby="titleOfTask">
+          </div>
+          <div class="mb-3">
+            <label for="deadline" class="form-label">Deadline</label>
+            <input type="date" class="form-control" id="deadline" aria-describedby="deadline">
+          </div>
+          <div class="mb-3">
+            <label class="form-control w-100" for="description">Description of Task</label>
+            <textarea class="w-100" maxlength="200" aria-describedby="descriptionOfTask"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-control w-100" for="notes">Notes</label>
+            <textarea class="w-100" maxlength="200" area-describedby="notes"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
         </div>
     </div>
 
