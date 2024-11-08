@@ -40,6 +40,18 @@ h3 {
     justify-content: center;
 }
 
+#title {
+    width: 20rem;
+}
+
+#deadline {
+    width: 10rem;
+}
+
+#description, #notes {
+    width: 40rem;
+}
+
 
 
 /*Write media queries to format to different screen sizes.
