@@ -55,6 +55,15 @@ form {
     width: 40rem;
 }
 
+navbar {
+    padding: 2rem;
+    margin: 0;
+    background-color: black;
+}
+
+.nav-item {
+    padding: 1rem;
+}
 
 
 /*Write media queries to format to different screen sizes.
