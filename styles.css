@@ -43,6 +43,8 @@ h3 {
     background-color: black;
     color: white;
     height: 50vh;
+    margin: auto;
+    padding: 2rem;
 }
 
 form {
