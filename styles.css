@@ -38,25 +38,11 @@ h3 {
 }
 
 #formContainer {
-    max-width: 70rem;
-    min-width: 30rem;
     background-color: black;
     color: white;
     height: 50vh;
     margin: auto;
     padding: 2rem;
-}
-
-#title {
-    width: 20rem;
-}
-
-#deadline {
-    width: 10rem;
-}
-
-#description, #notes {
-    width: 40rem;
 }
 
 nav {
