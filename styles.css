@@ -55,6 +55,18 @@ nav {
     padding: 1rem;
 }
 
+table, th, td, tr {
+  color: white;
+  background-color: black;
+}
+
+tr {
+    height: 5rem;
+}
+
+th, td {
+    border: 1px solid white;
+}
 
 
 /*Write media queries to format to different screen sizes.
