@@ -49,6 +49,7 @@ nav {
     padding: 2rem;
     margin: 0;
     background-color: black;
+    width: 100vw;
 }
 
 .nav-item {
