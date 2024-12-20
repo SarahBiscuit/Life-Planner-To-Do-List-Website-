@@ -11,7 +11,11 @@ So can't use .pop() as that will just remove the last input added to the arrays.
 (so that the user can add another to do list item).
 */
 
+//Want to us jQuery to write my JavaScript
+
 //1.
 
 const deadlines = [];
 const descriptionsOfTasks = [];
+const Notes = [];
+
