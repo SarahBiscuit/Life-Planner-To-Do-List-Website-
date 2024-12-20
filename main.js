@@ -10,3 +10,8 @@ So can't use .pop() as that will just remove the last input added to the arrays.
 6. When the user has added and submitted content in the form, need to set the form so that the input clears once the form is submitted
 (so that the user can add another to do list item).
 */
+
+//1.
+
+const deadlines = [];
+const descriptionsOfTasks = [];
