@@ -17,9 +17,7 @@ So can't use .pop() as that will just remove the last input added to the arrays.
 
 //1. arrays to store the user data
 
-const deadlines = [];
-const descriptionsOfTasks = [];
-const Notes = [];
+const newToDoListItem = [];
 
 //2. Event Listener added to submit button
  
@@ -32,15 +30,28 @@ $(".submit").click(function(event) {
     const descriptionOfTasks = $("#description").val();
     const taskNotes = $("#notes").val();
 
-    //Adds the user submissions to the arrays
+    //Creates object to add the user input to the newToDoListItem array.
     //.push method used to store the user input in the arrays.  Want to find away to populate this input in to the table on the to 
     //do list table page when it is stored in the arrays.
-    deadlines.push(deadline);
-    descriptionOfTasks.push(descriptionOfTasks);
-    notes.push(taskNotes);
+    
+    const newItemObject = {
+        deadline: deadline,
+        descriptionOfTasks: descriptionOfTasks,
+        taskNotes: taskNotes,
+    };
+    newToDoListITem.push(newItemObject);
 
     $("#deadline").val = "";
     $("#description").val = "";
-    $("#notes").val = "";
+    $("#notes").val = "");
 
-})
+    alert("Your Task Has Been Added to the Table on the 'To Do List Table' Page.");
+
+   //Chatgpt advice on Dynamic Table Population:
+
+//When navigating to the "To Do List Table" page, retrieve the tasks from the 
+// tasks array or localStorage and dynamically populate a table.
+//Use a method like tasks.forEach() to iterate through the array and create rows for the table.
+
+});
+
