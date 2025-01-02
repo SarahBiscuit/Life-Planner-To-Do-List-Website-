@@ -39,7 +39,8 @@ $(".submit").click(function(event) {
         descriptionOfTasks: descriptionOfTasks,
         taskNotes: taskNotes,
     };
-    newToDoListITem.push(newItemObject);
+
+    newToDoListItem.push(newItemObject);
 
     $("#deadline").val = "";
     $("#description").val = "";
@@ -56,10 +57,26 @@ $(".submit").click(function(event) {
 newToDoListItem.forEach(addRowAndItem);
 
 function addRowAndItem()) {
+
+    let tr = table.insertRow();
+
+    //creates new row and adds content based on the user input.
+
     tr.insertCell().textContent = newToDoListItem._deadline;
     tr.insertCell().textContent = newToDoListItem._descriptionOfTasks;
     tr.insertCell().textContent = newToDoListItem._taskNotes;
 
-    //this function currently inserts cells but does not specify where to add them (i.e. in the to to list table on the
-    //"To Do List Table" page).
+    //Working on adding a delete button
+    const deleteItem = tr.deleteCell();
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.className = "btn btn-danger submit";
+    $("deleteButton").attr("aria-label", "delete");
+    deleteItem.appendChild(deleteButton);
+
+    // Event Listener to delete the row
+    deleteButton.addEventListener("click", () => {
+        table.deleteRow(tr.rowIndex); // Removes the row from the table
+    });
+
 }
