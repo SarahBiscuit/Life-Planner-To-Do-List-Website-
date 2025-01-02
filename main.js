@@ -31,7 +31,7 @@ $(".submit").click(function(event) {
     const taskNotes = $("#notes").val();
 
     //Creates object to add the user input to the newToDoListItem array.
-    //.push method used to store the user input in the arrays.  Want to find away to populate this input in to the table on the to 
+    //.push method used to store the user input in the array.  Want to find away to populate this input in to the table on the to 
     //do list table page when it is stored in the arrays.
     
     const newItemObject = {
@@ -51,7 +51,8 @@ $(".submit").click(function(event) {
 
 //When navigating to the "To Do List Table" page, retrieve the tasks from the 
 // tasks array or localStorage and dynamically populate a table.
-//Use a method like tasks.forEach() to iterate through the array and create rows for the table.
+//Use a method like newToDoListItem.forEach() to iterate through the array and create rows for the table.
+//https://www.w3schools.com/jsref/jsref_foreach.asp
+newToDoListItem.forEach(addRowAndItem);
 
-});
-
+function(addRowAndItem)
