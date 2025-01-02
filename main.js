@@ -13,9 +13,34 @@ So can't use .pop() as that will just remove the last input added to the arrays.
 
 //Want to us jQuery to write my JavaScript
 
-//1.
+//Could look at adding back-end integration to handle the form submission (will learn how to do this on my course).
+
+//1. arrays to store the user data
 
 const deadlines = [];
 const descriptionsOfTasks = [];
 const Notes = [];
 
+//2. Event Listener added to submit button
+ 
+$(".submit").click(function(event) {
+
+    event.preventDefault();
+
+    // Fetch values from the form fields
+    const deadline = $("#deadline").val();
+    const descriptionOfTasks = $("#description").val();
+    const taskNotes = $("#notes").val();
+
+    //Adds the user submissions to the arrays
+    //.push method used to store the user input in the arrays.  Want to find away to populate this input in to the table on the to 
+    //do list table page when it is stored in the arrays.
+    deadlines.push(deadline);
+    descriptionOfTasks.push(descriptionOfTasks);
+    notes.push(taskNotes);
+
+    $("#deadline").val = "";
+    $("#description").val = "";
+    $("#notes").val = "";
+
+})
