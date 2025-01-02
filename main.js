@@ -55,4 +55,11 @@ $(".submit").click(function(event) {
 //https://www.w3schools.com/jsref/jsref_foreach.asp
 newToDoListItem.forEach(addRowAndItem);
 
-function(addRowAndItem)
+function addRowAndItem()) {
+    tr.insertCell().textContent = newToDoListItem._deadline;
+    tr.insertCell().textContent = newToDoListItem._descriptionOfTasks;
+    tr.insertCell().textContent = newToDoListItem._taskNotes;
+
+    //this function currently inserts cells but does not specify where to add them (i.e. in the to to list table on the
+    //"To Do List Table" page).
+}
