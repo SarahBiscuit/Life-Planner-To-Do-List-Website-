@@ -6,14 +6,14 @@ const newToDoListItem = [];
 
 //2. Event Listener added to submit button
  
-$(".submit").click(function(event) {
+$("#submitButton").click(function(event) {
 
     event.preventDefault();
 
     // Fetch values from the form fields
-    const deadline = $("#deadline").val();
-    const descriptionOfTasks = $("#description").val();
-    const taskNotes = $("#notes").val();
+    const deadline = $("#deadline").val("");
+    const descriptionOfTasks = $("#description").val("");
+    const taskNotes = $("#notes").val("");
 
     //Creates object to add the user input to the newToDoListItem array.
     //.push method used to store the user input in the array.  Want to find away to populate this input in to the table on the to 
