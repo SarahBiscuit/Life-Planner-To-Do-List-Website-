@@ -1,4 +1,5 @@
 //Could look at adding back-end integration to handle the form submission (will learn how to do this on my course).
+//Once I have done this, I will need to implement client-side storage or my user entries will not show on the to do list table page.
 
 //1. arrays to store the user data
 
@@ -56,7 +57,7 @@ $("#submitButton").click(function(event) {
 
     $("#deadline").val = "";
     $("#description").val = "";
-    $("#notes").val = "");
+    $("#notes").val = "";
 
     addRowAndItem(newItemObject);
 
