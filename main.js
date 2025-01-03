@@ -1,18 +1,3 @@
-/*PLAN FOR GETTING TO DO LIST JAVASCRIPT TO WORK (check against online examples but these are my ideas)
-
-1. Create an array to store the user's input answers for each question.
-2. Set an eventListener so that each time the submit button is clicked the user input is added to the arrays using .push().  Is this something to 
-create an object for, so that each to do list entry becomes it's own object?  I think that that is the logical thing to do.
-3. If there is no content that the user has added, set it so that .push(); will not Work.
-4. Set up .push so that the array elements are used to populate a table on a new page of my website.
-5. Need to find a method to remove any to do list item of the user's choosing from the table if needed (delete button on the relevant row?).  
-So can't use .pop() as that will just remove the last input added to the arrays.
-6. When the user has added and submitted content in the form, need to set the form so that the input clears once the form is submitted
-(so that the user can add another to do list item).
-*/
-
-//Want to us jQuery to write my JavaScript
-
 //Could look at adding back-end integration to handle the form submission (will learn how to do this on my course).
 
 //1. arrays to store the user data
@@ -48,35 +33,32 @@ $(".submit").click(function(event) {
 
     alert("Your Task Has Been Added to the Table on the 'To Do List Table' Page.");
 
-   //Chatgpt advice on Dynamic Table Population:
+//Add new row and item to table.
+addRowAndItem(newItemObject);
 
-//When navigating to the "To Do List Table" page, retrieve the tasks from the 
-// tasks array or localStorage and dynamically populate a table.
-//Use a method like newToDoListItem.forEach() to iterate through the array and create rows for the table.
-//https://www.w3schools.com/jsref/jsref_foreach.asp
-newToDoListItem.forEach(addRowAndItem);
+function addRowAndItem(item) {
 
-function addRowAndItem()) {
+    const table = document.querySelector("tbody");
 
     let tr = table.insertRow();
 
     //creates new row and adds content based on the user input.
 
-    tr.insertCell().textContent = newToDoListItem._deadline;
-    tr.insertCell().textContent = newToDoListItem._descriptionOfTasks;
-    tr.insertCell().textContent = newToDoListItem._taskNotes;
+    tr.insertCell().textContent = item.deadline;
+    tr.insertCell().textContent = item.descriptionOfTasks;
+    tr.insertCell().textContent = item.taskNotes;
 
     //Working on adding a delete button
-    const deleteItem = tr.deleteCell();
+    const deleteItem = tr.insertCell();
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.className = "btn btn-danger submit";
-    $("deleteButton").attr("aria-label", "delete");
+    $("deleteButton").setAttribute("aria-label", "delete");
     deleteItem.appendChild(deleteButton);
 
     // Event Listener to delete the row
     deleteButton.addEventListener("click", () => {
-        table.deleteRow(tr.rowIndex); // Removes the row from the table
+        table.deleteRow(tr.rowIndex - 1); // Removes the row from the table
     });
 
 }
