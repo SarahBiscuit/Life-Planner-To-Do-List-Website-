@@ -4,6 +4,33 @@
 
 const newToDoListItem = [];
 
+//Function to add new row and item to table.
+
+function addRowAndItem(item) {
+
+    const table = document.querySelector("tbody");
+
+    let tr = table.insertRow();
+
+    //creates new row and adds content based on the user input.
+
+    tr.insertCell().textContent = item.deadline;
+    tr.insertCell().textContent = item.descriptionOfTasks;
+    tr.insertCell().textContent = item.taskNotes;
+
+    //Working on adding a delete button
+    const deleteItem = tr.insertCell();
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.className = "btn btn-danger submit";
+    deleteButton.setAttribute("aria-label", "delete");
+    deleteItem.appendChild(deleteButton);
+
+    // Event Listener to delete the row
+    deleteButton.addEventListener("click", () => {
+        table.deleteRow(tr.rowIndex - 1); // Removes the row from the table
+    });
+
 //2. Event Listener added to submit button
  
 $("#submitButton").click(function(event) {
@@ -31,34 +58,10 @@ $("#submitButton").click(function(event) {
     $("#description").val = "";
     $("#notes").val = "");
 
+    addRowAndItem(newItemObject);
+
     alert("Your Task Has Been Added to the Table on the 'To Do List Table' Page.");
 
-//Add new row and item to table.
-addRowAndItem(newItemObject);
 
-function addRowAndItem(item) {
-
-    const table = document.querySelector("tbody");
-
-    let tr = table.insertRow();
-
-    //creates new row and adds content based on the user input.
-
-    tr.insertCell().textContent = item.deadline;
-    tr.insertCell().textContent = item.descriptionOfTasks;
-    tr.insertCell().textContent = item.taskNotes;
-
-    //Working on adding a delete button
-    const deleteItem = tr.insertCell();
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.className = "btn btn-danger submit";
-    $("deleteButton").setAttribute("aria-label", "delete");
-    deleteItem.appendChild(deleteButton);
-
-    // Event Listener to delete the row
-    deleteButton.addEventListener("click", () => {
-        table.deleteRow(tr.rowIndex - 1); // Removes the row from the table
-    });
 
 }
