@@ -52,10 +52,10 @@ h3 {
     padding: 2rem;
 }
 
-nav {
-    padding: 2rem;
+footer {
+    padding: 1rem;
     background-color: black;
-    width: 100%;
+    width: 100vw;
     margin-top: auto;
 }
 
