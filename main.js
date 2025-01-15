@@ -9,27 +9,29 @@ const newToDoListItem = [];
 
 function addRowAndItem(item) {
 
-    const table = document.querySelector("tbody");
+    const tableBody = $("tbody");
 
-    let tr = table.insertRow();
+    const tr = $("<tr></tr>");
 
-    //creates new row and adds content based on the user input.
+    //creates new row and cells and adds content based on the user input.
 
-    tr.insertCell().textContent = item.deadline;
-    tr.insertCell().textContent = item.descriptionOfTasks;
-    tr.insertCell().textContent = item.taskNotes;
+    // Create new cells and add content based on user input
+    $("<td></td>").text(item.deadline).appendTo(tr);
+    $("<td></td>").text(item.descriptionOfTasks).appendTo(tr);
+    $("<td></td>").text(item.taskNotes).appendTo(tr);
 
     //Working on adding a delete button
-    const deleteItem = tr.insertCell();
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.className = "btn btn-danger submit";
-    deleteButton.setAttribute("aria-label", "delete");
-    deleteItem.appendChild(deleteButton);
+    const deleteButton = $("<button></button>")
+    .text("Delete")
+    .addClass("btn btn-danger")
+    .attr("aria-label", "delete");
+    
+    tr.append(deleteButton);
 
     // Event Listener to delete the row
-    deleteButton.addEventListener("click", () => {
-        table.deleteRow(tr.rowIndex - 1); // Removes the row from the table
+
+    $("deleteButton").click(function () {
+        tr.remove(); // Removes the row
     });
 
 //2. Event Listener added to submit button
@@ -39,13 +41,12 @@ $("#submitButton").click(function(event) {
     event.preventDefault();
 
     // Fetch values from the form fields
-    const deadline = $("#deadline").val("");
-    const descriptionOfTasks = $("#description").val("");
-    const taskNotes = $("#notes").val("");
+    const deadline = $("#deadline").val();
+    const descriptionOfTasks = $("#description").val();
+    const taskNotes = $("#notes").val();
 
     //Creates object to add the user input to the newToDoListItem array.
-    //.push method used to store the user input in the array.  Want to find away to populate this input in to the table on the to 
-    //do list table page when it is stored in the arrays.
+    //.push method used to store the user input in the array.  
     
     const newItemObject = {
         deadline: deadline,
@@ -55,14 +56,12 @@ $("#submitButton").click(function(event) {
 
     newToDoListItem.push(newItemObject);
 
-    $("#deadline").val = "";
-    $("#description").val = "";
-    $("#notes").val = "";
+    $("#deadline").val("");
+    $("#description").val("");
+    $("#notes").val("");
 
     addRowAndItem(newItemObject);
 
     alert("Your Task Has Been Added to the Table on the 'To Do List Table' Page.");
-
-
 
 }
