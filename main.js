@@ -1,15 +1,21 @@
 //Could look at adding back-end integration to handle the form submission (will learn how to do this on my course).
-//Once I have done this, I will need to implement client-side storage or my user entries will not show on the to do list table page.
+//Once I have done this, I will need to implement client-side storage (database) or my user entries will not show on the to do list table page.
 
-//1. arrays to store the user data
+//1. arrays to store the user data (using IIFE - Immediately Invoked Function Expression)
 
 const newToDoListItem = [];
+
+$(function () {
+    const newToDoListItem = [];
+
+    // Your code here
+});
 
 //Function to add new row and item to table.
 
 function addRowAndItem(item) {
 
-    const tableBody = $("tbody");
+    const tableBody = $("#tableBodyToDoList");
 
     const tr = $("<tr></tr>");
 
@@ -25,13 +31,16 @@ function addRowAndItem(item) {
     .text("Delete")
     .addClass("btn btn-danger")
     .attr("aria-label", "delete");
+
+    //Add new cell and put delete button in it.
     
-    tr.append(deleteButton);
+    const deleteCell = $("<td></td>").append(deleteButton);
+    tr.append(deleteCell);
 
     // Event Listener to delete the row
 
-    $("deleteButton").click(function () {
-        tr.remove(); // Removes the row
+    $(document).on("click", ".btn-danger", function () {
+        $(this).closest("tr").remove(); // Removes the row containing the button
     });
 
 //2. Event Listener added to submit button
