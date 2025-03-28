@@ -1,3 +1,20 @@
+import express from "express";
+const app = express();
+import bodyParser from "body-parser";
+
+app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static("public"));  
+
+app.listen(3000, () => {
+console.log("Server running on port 3000.");
+});
+
+
+/* COMMENTED OUT AS THIS WILL BE ADDED TO MY EJS FILES.  ADDING THE EXPRESS AND EJS BACK END CODE ABOVE.
+
 //Could look at adding back-end integration to handle the form submission (will learn how to do this on my course).
 //Once I have done this, I will need to implement client-side storage (database) or my user entries will not show on the to do list table page.
 
@@ -62,4 +79,4 @@ $("#submitButton").click(function (event) {
     } else {
         alert("Please fill out all fields before submitting.");
     }
-});
+});*/
