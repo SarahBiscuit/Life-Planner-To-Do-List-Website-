@@ -1,4 +1,38 @@
 <%- include("partials/header.ejs") %>
 
+<%--Intro section --%>
+
+<div class="px-4 py-5 text-center container-fluid" id="headingBox">
+    <h1 class="display-5 fw-bold">Life Planner</h1>
+      <br />
+      <br />
+    <h2>For those who live by lists</h2>
+      <br />
+      <br />
+    <h3>Create a simple to do list to help manage your time</h3>
+      <br />
+      <br />
+      <div class="container-fluid d-flex justify-content-center align-items-center col-lg-6 col-md-8 col-sm-8 col-xs-10" id="formContainer">
+        <div class="row w-100">
+          <div class="col-lg-10 col-md-8 col-sm-12 col-12 mx-auto">
+
+<%-- Form for adding to do list entries - rewritten using EJS --%>
+<form action="/submit" method="POST">
+    <div class="mb-3">
+        <label for="deadline" class="form-label" aria-label="deadline"><b>Deadline</b></label>
+        <input type="date" class="form-control" id="deadline" name="deadline" aria-describedby="deadline" value="<%= deadline || '' %>" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="description" aria-label="description of task"><b>Description of Task</b></label>
+        <textarea maxlength="200" class="form-control" id="description" name="description" 
+                  aria-describedby="descriptionOfTask" required><%= description || '' %></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="notes" aria-label="notes"><b>Notes</b></label>
+        <textarea maxlength="200" class="form-control" id="notes" name="notes" 
+                  aria-describedby="notes" required><%= notes || '' %></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary submit" aria-label="submit" id="submitButton"><b>Submit</b></button>
+</form>
 
 <%- indlude("partials/footer.ejs") %>
