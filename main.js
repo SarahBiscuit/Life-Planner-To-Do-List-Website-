@@ -8,9 +8,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));  
 
+//Renders the form//
 app.get("/", (req, res) => {
     res.render("index.ejs", { deadline: "", description: "", notes: "" });
 });
+
+//handles form submissions//
+app.post("/submit", (req, res) => {
+    //Form data extracted//
+    const {deadline, description, notes } = req.body;
+})
 
 app.get("/table", (req, res) => {
     res.render("toDoListTable.ejs",)
