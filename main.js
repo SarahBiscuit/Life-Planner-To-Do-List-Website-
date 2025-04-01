@@ -9,14 +9,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));  
 
 app.get("/", (req, res) => {
-    res.render("index.ejs",);
+    res.render("index.ejs", { deadline: "", description: "", notes: "" });
 });
-
 
 app.get("/table", (req, res) => {
     res.render("toDoListTable.ejs",)
 });
 
+app.get("/contact", (req, res) => {
+    res.render("contact.ejs",);
+})
 
 app.listen(3000, () => {
 console.log("Server running on port 3000.");
