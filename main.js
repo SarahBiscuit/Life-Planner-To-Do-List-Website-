@@ -17,6 +17,11 @@ app.get("/", (req, res) => {
 app.post("/submit", (req, res) => {
     //Form data extracted//
     const {deadline, description, notes } = req.body;
+    // Log data for debugging
+    console.log("To do list item recieved:", { deadline, description, notes });
+
+    // Redirect to toDoListTable page//
+    res.redirect("/table");
 })
 
 app.get("/table", (req, res) => {
@@ -25,7 +30,7 @@ app.get("/table", (req, res) => {
 
 app.get("/contact", (req, res) => {
     res.render("contact.ejs",);
-})
+});
 
 app.listen(3000, () => {
 console.log("Server running on port 3000.");
