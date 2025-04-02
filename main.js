@@ -37,6 +37,12 @@ app.get("/contact", (req, res) => {
     res.render("contact.ejs",);
 });
 
+app.post("/delete", (req, res) => {
+    const { index } = req.body;
+    newToDoListItem.splice(index, 1);
+    res.redirect("/table");
+});
+
 app.listen(3000, () => {
 console.log("Server running on port 3000.");
 });
