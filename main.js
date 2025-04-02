@@ -35,7 +35,7 @@ app.get("/table", (req, res) => {
 });
 
 app.get("/contact", (req, res) => {
-    res.render("contact.ejs",);
+    res.render("contact.ejs");
 });
 
 app.post("/delete", (req, res) => {
