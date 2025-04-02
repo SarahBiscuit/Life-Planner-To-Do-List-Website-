@@ -42,13 +42,18 @@
 
 <script>
     // Add event listener for delete buttons
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", function() {
-                this.closest("tr").remove();
-            });
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".delete-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            const index = this.getAttribute("data-id");
+            fetch("/delete", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ index })
+            }).then(() => window.location.reload());
         });
     });
+});
 </script>
 
 <%- include("partials/footer.ejs") %>
