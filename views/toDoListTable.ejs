@@ -1,5 +1,6 @@
 <%- include("partials/header.ejs") %>
 
+<%# Intro section %>
 <div class="px-4 py-5 text-center container-fluid" id="headingBox">
     <h1 class="display-5 fw-bold">To Do List Table</h1>
     <br /><br /> 
@@ -19,6 +20,7 @@
                 <th id="actions" aria-label="actions column" class="col-2"><h3><b>Actions</b></h3></th>
             </tr>
         </thead>
+        <%# Creation of new row and delete button for each table item %>
         <tbody id="tableBodyToDoList">
             <% if (toDoList && toDoList.length > 0) { %>
                 <% toDoList.forEach(item => { %>
@@ -41,7 +43,7 @@
 </div>
 
 <script>
-    // Add event listener for delete buttons
+    <%# Add event listener for delete buttons %>
     document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".delete-btn").forEach(button => {
         button.addEventListener("click", function () {
