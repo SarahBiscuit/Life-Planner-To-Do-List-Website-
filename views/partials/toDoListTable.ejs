@@ -27,7 +27,7 @@
                         <td><%= item.deadline %></td>
                         <td><%= item.notes %></td>
                         <td>
-                            <button class="btn btn-danger delete-btn" aria-label="delete">Delete</button>
+                            <button class="btn btn-danger delete-btn" data-id="<%= item.id %>">Delete</button>
                         </td>
                     </tr>
                 <% }) %>
