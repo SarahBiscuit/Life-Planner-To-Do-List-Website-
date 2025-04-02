@@ -23,7 +23,8 @@ app.post("/submit", (req, res) => {
     console.log("To do list item recieved:", { deadline, description, notes });
 
     // Add new to do list item to array
-    newToDoListItem.push({ deadline, description, notes });
+    // Assign an ID based on the array length
+    newToDoListItem.push({ id: newToDoListItem.length, deadline, description, notes });
 
     // Redirect to toDoListTable page//
     res.redirect("/table");
