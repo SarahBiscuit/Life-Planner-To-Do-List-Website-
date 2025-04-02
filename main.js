@@ -1,6 +1,7 @@
 import express from "express";
 const app = express();
 import bodyParser from "body-parser";
+
 const newToDoListItem = [];
 
 app.set("view engine", "ejs");
@@ -21,12 +22,15 @@ app.post("/submit", (req, res) => {
     // Log data for debugging
     console.log("To do list item recieved:", { deadline, description, notes });
 
+    // Add new to do list item to array
+    newToDoListItem.push({ deadline, description, notes });
+
     // Redirect to toDoListTable page//
     res.redirect("/table");
-})
+});
 
 app.get("/table", (req, res) => {
-    res.render("toDoListTable.ejs",)
+    res.render("toDoListTable.ejs", { toDoList: newToDoListItem });
 });
 
 app.get("/contact", (req, res) => {
