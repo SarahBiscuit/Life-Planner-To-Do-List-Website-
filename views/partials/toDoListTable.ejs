@@ -1,104 +1,54 @@
 <%- include("partials/header.ejs") %>
 
-<%/* Main header area */%>
-
 <div class="px-4 py-5 text-center container-fluid" id="headingBox">
     <h1 class="display-5 fw-bold">To Do List Table</h1>
-      <br />
-      <br /> 
-      <h2>Please see your to do list below</h2>
-    <br />
-    <br />
-  <h3>Your submitted to do list entries will be added to the table below</h3>
-    <br />
-    <br />
-  <h4>Enjoy building your to do list.</h4>
-  <br />
-  <br />
-  <br />
+    <br /><br /> 
+    <h2>Please see your to-do list below</h2>
+    <br /><br />
+    <h3>Your submitted to-do list entries will be added to the table below</h3>
+    <br /><br />
+    <h4>Enjoy building your to-do list.</h4>
+    <br /><br /><br />
 
-  <%/* Table - am gradually adding the JavaScript code in to this */%>
     <table class="table" aria-label="table">
-      <thead>
-        <tr>
-          <th id="description" aria-label="description column" class="col-4"><h3><span><b>Description of Task</b></span></h3></th>
-          <th id="deadline" aria-label="deadline column" class="col-3"><h3><span><b>Deadline</b></span></h3></th>
-          <th id="notes" aria-label="notes column" class="col-5"><h3><span><b>Notes</b></span></h3></th>
-        </tr>
-      </thead>
-      <tbody id="tableBodyToDoList">
-        <!-- New rows will be added here when the user completes the to do list form. -->
-         <% if(locals.toDoList) %>
-         <% toDoList.forEach(item => { %>
-           xxxx
-            <% }) %>
-      </tbody>
+        <thead>
+            <tr>
+                <th id="description" aria-label="description column" class="col-4"><h3><b>Description of Task</b></h3></th>
+                <th id="deadline" aria-label="deadline column" class="col-3"><h3><b>Deadline</b></h3></th>
+                <th id="notes" aria-label="notes column" class="col-5"><h3><b>Notes</b></h3></th>
+                <th id="actions" aria-label="actions column" class="col-2"><h3><b>Actions</b></h3></th>
+            </tr>
+        </thead>
+        <tbody id="tableBodyToDoList">
+            <% if (toDoList && toDoList.length > 0) { %>
+                <% toDoList.forEach(item => { %>
+                    <tr>
+                        <td><%= item.description %></td>
+                        <td><%= item.deadline %></td>
+                        <td><%= item.notes %></td>
+                        <td>
+                            <button class="btn btn-danger delete-btn" aria-label="delete">Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4" class="text-center">No to-do items yet.</td>
+                </tr>
+            <% } %>
+        </tbody>
     </table>
-  </div>
+</div>
 
+<script>
+    // Add event listener for delete buttons
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function() {
+                this.closest("tr").remove();
+            });
+        });
+    });
+</script>
 
 <%- include("partials/footer.ejs") %>
-
-
-<%/* COMMENTED OUT TEXT THAT WAS PREVIOUSLY IN MY MAIN.JS FILE - TO INCORPORATE IN THIS FILE.
-
-// Array to store the user data
-// Function to add a new row and item to the table
-function addRowAndItem(item) {
-    const tableBody = $("#tableBodyToDoList");
-    const tr = $("<tr></tr>");
-
-    // Create new cells and add content based on user input
-    $("<td></td>").text(item.deadline).appendTo(tr);
-    $("<td></td>").text(item.descriptionOfTasks).appendTo(tr);
-    $("<td></td>").text(item.taskNotes).appendTo(tr);
-
-    // Create delete button
-    const deleteButton = $("<button></button>")
-        .text("Delete")
-        .addClass("btn btn-danger")
-        .attr("aria-label", "delete")
-        .click(function () {
-            $(this).closest("tr").remove(); // Removes the row containing the button
-        });
-
-    // Add delete button to a new cell and append to the row
-    const deleteCell = $("<td></td>").append(deleteButton);
-    tr.append(deleteCell);
-
-    // Append the row to the table body
-    tableBody.append(tr);
-}
-
-// Event Listener for the submit button
-$("#submitButton").click(function (event) {
-    event.preventDefault();
-
-    // Fetch values from the form fields
-    const deadline = $("#deadline").val();
-    const descriptionOfTasks = $("#description").val();
-    const taskNotes = $("#notes").val();
-
-    if (deadline && descriptionOfTasks && taskNotes) {
-        // Create an object and push it to the array
-        const newItemObject = {
-            deadline: deadline,
-            descriptionOfTasks: descriptionOfTasks,
-            taskNotes: taskNotes,
-        };
-
-        newToDoListItem.push(newItemObject);
-
-        // Reset the form fields
-        $("#deadline").val("");
-        $("#description").val("");
-        $("#notes").val("");
-
-        // Add the new row to the table
-        addRowAndItem(newItemObject);
-
-        alert("Your Task Has Been Added to the Table on the 'To Do List Table' Page.");
-    } else {
-        alert("Please fill out all fields before submitting.");
-    }
-});*/%>
