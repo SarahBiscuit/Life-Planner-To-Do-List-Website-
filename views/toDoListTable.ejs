@@ -1,71 +1,65 @@
 <%- include("partials/header.ejs") %>
 
-<%# Intro section %>
 <div class="px-4 py-5 text-center container-fluid" id="headingBox">
-    <h1 class="display-5 fw-bold">To Do List Table</h1>
-    <br /><br /> 
-    <h2>Please see your to-do list below</h2>
-    <br /><br />
-    <h3>Your submitted to-do list entries will be added to the table below</h3>
-    <br /><br />
-    <h4>Enjoy building your to-do list.</h4>
-    <br /><br /><br />
+  <h1 class="display-5 fw-bold">To Do List Table</h1>
+  <br /><br />
+  <h2>Please see your to-do list below</h2>
+  <br /><br />
+  <h3>Your submitted to-do list entries will be added to the table below</h3>
+  <br /><br />
+  <h4>Enjoy building your to-do list.</h4>
+  <br /><br /><br />
 
-    <table class="table" aria-label="table">
-        <thead>
-            <tr>
-                <th id="description" aria-label="description column" class="col-4"><h3><b>Description of Task</b></h3></th>
-                <th id="deadline" aria-label="deadline column" class="col-3"><h3><b>Deadline</b></h3></th>
-                <th id="notes" aria-label="notes column" class="col-5"><h3><b>Notes</b></h3></th>
-                <th id="actions" aria-label="actions column" class="col-2"><h3><b>Actions</b></h3></th>
-            </tr>
-        </thead>
-        <%# Creation of new row and delete button for each table item %>
-        <tbody id="tableBodyToDoList">
-            <% if (toDoList && toDoList.length > 0) { %>
-                <% toDoList.forEach(item => { %>
-                    <tr>
-                        <td><%= item.description %></td>
-                        <td><%= item.deadline %></td>
-                        <td><%= item.notes %></td>
-                        <td>
-                            <button class="btn btn-danger delete-btn" data-id="<%= item.id %>">Delete</button>
-                        </td>
-                    </tr>
-                <% }) %>
-            <% } else { %>
-                <tr>
-                    <td colspan="4" class="text-center">No to-do items yet.</td>
-                </tr>
-            <% } %>
-        </tbody>
-    </table>
+  <table class="table" aria-label="To Do List Table">
+    <thead>
+      <tr>
+        <th class="col-4"><h3><b>Description of Task</b></h3></th>
+        <th class="col-3"><h3><b>Deadline</b></h3></th>
+        <th class="col-3"><h3><b>Notes</b></h3></th>
+        <th class="col-2"><h3><b>Actions</b></h3></th>
+      </tr>
+    </thead>
+    <tbody id="tableBodyToDoList">
+      <% if (toDoList && toDoList.length > 0) { %>
+        <% toDoList.forEach(item => { %>
+          <tr>
+            <td><%= item.description %></td>
+            <td><%= item.deadline %></td>
+            <td><%= item.notes %></td>
+            <td>
+              <button class="btn btn-danger delete-btn" data-id="<%= item.id %>">Delete</button>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="4" class="text-center">No to-do items yet.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", function () {
-                const index = this.getAttribute("data-id");
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".delete-btn").forEach(button => {
+      button.addEventListener("click", function () {
+        const id = this.getAttribute("data-id");
 
-                // Properly format the body as URL-encoded
-                const formData = new URLSearchParams();
-                formData.append("index", index);
+        const formData = new URLSearchParams();
+        formData.append("id", id);
 
-                fetch("/delete", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: formData.toString()
-                })
-                .then(response => response.text())
-                .then(text => {
-                    console.log("Response text:", text);
-                    window.location.reload();
-                })
-                .catch(err => console.error("Error deleting item:", err));
-            });
-        });
+        fetch("/delete", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: formData.toString()
+        })
+        .then(response => response.text())
+        .then(() => window.location.reload())
+        .catch(err => console.error("Error deleting item:", err));
+      });
     });
+  });
 </script>
 
 <%- include("partials/footer.ejs") %>
