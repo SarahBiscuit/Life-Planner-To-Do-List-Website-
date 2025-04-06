@@ -43,25 +43,29 @@
 </div>
 
 <script>
-    <%# Add event listener for delete buttons %>
     document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".delete-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            const index = this.getAttribute("data-id");
-            fetch("/delete", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: formData.toString()
-            })
-            .then(response => response.text()) // Read response
-            .then(text => {
-                console.log("Response text:", text);
-                window.location.reload();
-            })
-            .catch(err => console.error("Error deleting item:", err));
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                const index = this.getAttribute("data-id");
+
+                // Properly format the body as URL-encoded
+                const formData = new URLSearchParams();
+                formData.append("index", index);
+
+                fetch("/delete", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: formData.toString()
+                })
+                .then(response => response.text())
+                .then(text => {
+                    console.log("Response text:", text);
+                    window.location.reload();
+                })
+                .catch(err => console.error("Error deleting item:", err));
+            });
         });
     });
-});
 </script>
 
 <%- include("partials/footer.ejs") %>
