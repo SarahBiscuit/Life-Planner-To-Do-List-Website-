@@ -37,10 +37,10 @@ h3 {
 #headingBox {
    background-image: url(Images/istockphoto-496682211-612x612.jpg);
    width: 100%;
-   height: 100vh;
+   height: auto;
    display: flex;
    justify-content: center;
-    align-items: center;
+    align-items: stretch;
     flex-direction: column;
 }
 
@@ -68,6 +68,11 @@ table, th, td, tr {
   background-color: black;
 }
 
+.table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+
 tr {
     height: 5rem;
 }
@@ -78,5 +83,5 @@ th, td {
 
 
 /*Write media queries to format to different screen sizes (probably as simple as just reducing font size).
-Write media query for dark view.*/
+
 
