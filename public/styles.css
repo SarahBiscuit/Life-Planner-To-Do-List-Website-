@@ -34,6 +34,14 @@ h3 {
     font-size: 1.7rem;
 }
 
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.2rem;
+}
+
 #headingBox {
    background-image: url(Images/istockphoto-496682211-612x612.jpg);
    width: 100%;
@@ -66,6 +74,9 @@ footer {
 table, th, td, tr {
   color: white;
   background-color: black;
+  white-space: normal; /* Allows wrapping */
+  word-wrap: break-word; /* Ensures long words can break */
+  word-break: break-word; /* Breaks unbreakable words if needed */
 }
 
 .table-wrapper {
@@ -81,7 +92,30 @@ th, td {
     border: 2px solid white;
 }
 
+/*tablet media query*/
+@media (max-width: 768px) {
+    h1 {
+      font-size: 4.5rem !important;
+    }
 
-/*Write media queries to format to different screen sizes (probably as simple as just reducing font size).
+    h2 {
+        font-size: 1.5rem;
+    }
 
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    h4 {
+        font-size: 1rem;    
+    }
+
+    h5 {
+        font-size: 0.8rem;
+    }
+
+}
+
+
+/*Write media queries to format to different screen sizes (probably as simple as just reducing font size) for mobile and for tablet. */
 
