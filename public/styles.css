@@ -116,6 +116,31 @@ th, td {
 
 }
 
+/* Smaller tablet media query */
+@media (max-width: 600px) {
+    h1 {
+      font-size: 3rem;
+    }
+  
+    h2 {
+      font-size: 1.2rem;
+    }
+  
+    h3 {
+      font-size: 1rem;
+    }
+  
+    h4, h5 {
+      font-size: 0.7rem;
+    }
 
+    table {
+        white-space: nowrap;
+      }
+  }
+
+  /* Mobile media query */
+
+  /* add to mobile media query to format button size for delete button as well */
 /*Write media queries to format to different screen sizes (probably as simple as just reducing font size) for mobile and for tablet. */
 
