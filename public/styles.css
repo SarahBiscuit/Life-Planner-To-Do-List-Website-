@@ -134,7 +134,7 @@ th, td {
       font-size: 0.7rem;
     }
 
-    table {
+    table, th, td {
         white-space: nowrap;
       }
   }
