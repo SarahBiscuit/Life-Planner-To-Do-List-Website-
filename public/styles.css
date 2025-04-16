@@ -71,6 +71,12 @@ footer {
     padding: 1rem;
 }
 
+
+#homeNavbar {
+    z-index: 1000;
+    position: relative;
+  }
+
 table, th, td, tr {
   color: white;
   background-color: black;
@@ -138,6 +144,7 @@ th, td {
         white-space: nowrap;
       }
   }
+
 
   /* Mobile media query */
 
