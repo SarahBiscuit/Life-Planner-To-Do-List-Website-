@@ -1,0 +1,29 @@
+{
+  "name": "life-planner-to-do-list-website-",
+  "version": "1.0.0",
+  "description": "life planner to-do-list website",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "GitHub"
+  },
+  "keywords": [
+    "to-do-list",
+    "planner"
+  ],
+  "author": "Sarah McVittie-Mathews",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

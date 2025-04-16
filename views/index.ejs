@@ -1,0 +1,34 @@
+<%- include("partials/header.ejs") %>
+
+<div class="px-4 py-5 text-center container-fluid" id="headingBox">
+  <h1 class="display-5 fw-bold">Life Planner</h1>
+  <br /><br />
+  <h2>For those who live by lists</h2>
+  <br /><br />
+  <h3>Create a simple to do list to help manage your time</h3>
+  <br /><br />
+
+  <div class="container-fluid d-flex justify-content-center align-items-center col-lg-6 col-md-8 col-sm-10" id="formContainer">
+    <div class="row w-100">
+      <div class="col-12 mx-auto">
+        <form action="/submit" method="POST">
+          <div class="mb-3">
+            <label for="deadline" class="form-label"><b>Deadline</b></label>
+            <input type="date" class="form-control" id="deadline" name="deadline" value="<%= deadline || '' %>" required>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label"><b>Description of Task</b></label>
+            <textarea maxlength="200" class="form-control" id="description" name="description" required><%= description || '' %></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="notes" class="form-label"><b>Notes</b></label>
+            <textarea maxlength="200" class="form-control" id="notes" name="notes" required><%= notes || '' %></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submitButton"><b>Submit</b></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

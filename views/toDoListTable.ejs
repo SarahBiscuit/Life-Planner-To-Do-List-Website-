@@ -1,0 +1,67 @@
+<%- include("partials/header.ejs") %>
+
+<div class="px-4 py-5 text-center container-fluid" id="headingBox">
+  <h1 class="display-5 fw-bold">To Do List Table</h1>
+  <br /><br />
+  <h2>Please see your to-do list below</h2>
+  <br /><br />
+  <h3>Your submitted to-do list entries will be added to the table below</h3>
+  <br /><br />
+  <h3>Enjoy building your to-do list.</h3>
+  <br /><br /><br />
+
+  <div class="table-wrapper">
+  <table class="table" aria-label="To Do List Table">
+    <thead>
+      <tr>
+        <th class="col-4"><h4><b>Description of Task</b></h4></th>
+        <th class="col-3"><h4><b>Deadline</b></h4></th>
+        <th class="col-3"><h4><b>Notes</b></h4></th>
+        <th class="col-2"><h4><b>Actions</b></h4></th>
+      </tr>
+    </thead>
+    <tbody id="tableBodyToDoList">
+      <% if (toDoList && toDoList.length > 0) { %>
+        <% toDoList.forEach(item => { %>
+          <tr>
+            <td><%= item.description %></td>
+            <td><%= item.deadline %></td>
+            <td><%= item.notes %></td>
+            <td>
+              <button class="btn btn-danger delete-btn" data-id="<%= item.id %>">Delete</button>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="4" class="text-center">No to-do items yet.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".delete-btn").forEach(button => {
+      button.addEventListener("click", function () {
+        const id = this.getAttribute("data-id");
+
+        const formData = new URLSearchParams();
+        formData.append("id", id);
+
+        fetch("/delete", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: formData.toString()
+        })
+        .then(response => response.text())
+        .then(() => window.location.reload())
+        .catch(err => console.error("Error deleting item:", err));
+      });
+    });
+  });
+</script>
+
+<%- include("partials/footer.ejs") %>
