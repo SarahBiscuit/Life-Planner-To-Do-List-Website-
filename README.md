@@ -1,6 +1,6 @@
 # Life Planner(To Do List Website)
 
-This website uses HTML, CSS, JavaScript, Node.js, Express.js and ejs.
+This website uses HTML, CSS, JavaScript, Node.js, Express.js, ejs and PostgreSQL.
 
 You will also need to install Body-Parser.
 
