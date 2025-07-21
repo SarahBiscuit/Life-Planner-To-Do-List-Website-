@@ -1,30 +1,16 @@
 import express from "express";
 const app = express();
 import bodyParser from "body-parser";
-import { v4 as uuidv4 } from "uuid";
-import pg from "pg";
-
-//Create the database DONE    
-//Create the database connection in this file
-/*When i select the data field from the database for the table, I will need to use the following SQL code
-SELECT TO_CHAR(your_date_column, 'DD/MM/YYYY') AS formatted_date FROM your_table;
-This is because I want to format it as DD/MM/YYYY and this is not how SQL stores it in the database*/
-//Amend my routes to handle the new database structure - in the main-js and index.ejs
-//Looking at putting an API between the back-end and the database to handle the database requests.  Need to do some research on this.
-//Consider adding an edit route to update items in the database (would, however, also involve adding an edit button in the UI)
-//Will I still need uuid when I am using a database?
-//DATABASE PLAN - four columns - id(serial primary key) (which is why I am thinkign I won't need uuid), deadline, description and notes.
+import pg from 'pg';
 
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "toDoListWebsite",
-  password: "INSERT MY PASSWORD HERE",
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 db.connect();
-
-const newToDoListItem = [];
 
 app.set("view engine", "ejs");
 
@@ -32,40 +18,68 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));  
 
-//Renders the form//
+//Renders the blank to do list form.//
 app.get("/", (req, res) => {
-    res.render("index.ejs", { deadline: "", description: "", notes: "" });
+  res.render("index.ejs", {
+    deadline: "",
+    description: "",
+    notes: "",
+  });
 });
 
-//handles form submissions//
-app.post("/submit", (req, res) => {
+//handles form submissions.  Want to rewrite this route so that it takes the form submissions and pushes them to the database//
+app.post("/submit", async (req, res) => {
     //Form data extracted//
+    try {
     const {deadline, description, notes } = req.body;
-    const id = uuidv4(); // Unique ID
+
     // Log data for debugging
-    console.log("To do list item recieved:", { id, deadline, description, notes });
+    console.log("To do list item recieved:", { deadline, description, notes });
 
     // Add new to do list item to array
-    // Assign an ID based on the array length
-    newToDoListItem.push({ id, deadline, description, notes });
-
-    // Redirect to toDoListTable page//
+    await db.query("INSERT INTO items (deadline, description, notes) VALUES ($1, $2, $3)", [deadline, description, notes]);
     res.redirect("/table");
+    } catch (err) {
+        console.error("Error inserting item:", err.stack);
+        res.status(500).send("Server error");
+    }
 });
 
-app.get("/table", (req, res) => {
-    res.render("toDoListTable.ejs", { toDoList: newToDoListItem });
+app.get("/table", async (req, res) => {
+   try {
+  //Query the database for items 
+  const result = await db.query("SELECT id, TO_CHAR(deadline, 'DD/MM/YYYY') AS formatted_deadline, description, notes FROM items ORDER BY id ASC;");
+    const items = result.rows.map(row => ({
+      id: row.id,
+      deadline: row.formatted_deadline,
+      description: row.description,
+      notes: row.notes
+    }));
+
+    //Renders the webpage with the to do list items
+    res.render("toDoListTable.ejs", {
+      items: items,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
 });
 
 app.get("/contact", (req, res) => {
     res.render("contact.ejs");
 });
 
-app.post("/delete", (req, res) => {
-    const { id } = req.body;
-    const index = newToDoListItem.findIndex(item => item.id === id);
-    if (index !== -1) newToDoListItem.splice(index, 1);
-    res.redirect("/table");
+app.post("/delete", async (req, res) => {
+    const id = req.body.id;
+    try {
+        await db.query("DELETE FROM items WHERE id = $1", [id]);
+        res.redirect("/table");
+    } catch (err) {
+        console.error("Error deleting item:", err.stack);
+        res.status(500).send("Server error");
+    }
 });
 
 app.listen(3000, () => {
