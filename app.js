@@ -1,3 +1,6 @@
+//Want to go through the code and explain exactly how this is an api
+//Want to merge my new api code with the main.js file
+//This is the main entry point for the application
 import express from "express";
 import bodyParser from "body-parser";
 
