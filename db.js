@@ -5,13 +5,14 @@ import pg from 'pg';
 const { Client } = pg;
 
 const db = new Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,  // This ensures SSL works smoothly with Neon
+  },
 });
 
-db.connect();
+db.connect()
+  .then(() => console.log('Connected to Neon DB'))
+  .catch((err) => console.error('Connection error', err.stack));
 
 export default db;
