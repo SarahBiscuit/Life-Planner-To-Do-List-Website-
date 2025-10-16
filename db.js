@@ -15,4 +15,6 @@ db.connect()
   .then(() => console.log('Connected to Neon DB'))
   .catch((err) => console.error('Connection error', err.stack));
 
+  console.log('DATABASE_URL:', process.env.DATABASE_URL);
+
 export default db;

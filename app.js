@@ -1,5 +1,3 @@
-//Want to go through the code and explain exactly how this is an api
-//Want to merge my new api code with the main.js file
 //This is the main entry point for the application
 import express from "express";
 import bodyParser from "body-parser";
@@ -63,6 +61,7 @@ app.post('/delete', async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
